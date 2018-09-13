@@ -1,0 +1,16 @@
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Release\adminMgr.exe.config
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Release\adminMgr.exe
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Release\adminMgr.pdb
+F:\myproject\vs2013\adminMgr\adminMgr\obj\Release\adminMgr.exe
+F:\myproject\vs2013\adminMgr\adminMgr\obj\Release\adminMgr.pdb
+F:\myproject\vs2013\adminMgr\adminMgr\obj\Release\adminMgr.csprojResolveAssemblyReference.cache
+F:\myproject\vs2013\IMS\adminMgr\adminMgr\bin\Release\adminMgr.exe.config
+F:\myproject\vs2013\IMS\adminMgr\adminMgr\obj\Release\adminMgr.exe
+F:\myproject\vs2013\IMS\adminMgr\adminMgr\obj\Release\adminMgr.pdb
+F:\myproject\vs2013\IMS\adminMgr\adminMgr\bin\Release\adminMgr.exe
+F:\myproject\vs2013\IMS\adminMgr\adminMgr\bin\Release\adminMgr.pdb
+F:\IMS\IMS\adminMgr\adminMgr\bin\Release\adminMgr.exe.config
+F:\IMS\IMS\adminMgr\adminMgr\obj\Release\adminMgr.exe
+F:\IMS\IMS\adminMgr\adminMgr\obj\Release\adminMgr.pdb
+F:\IMS\IMS\adminMgr\adminMgr\bin\Release\adminMgr.exe
+F:\IMS\IMS\adminMgr\adminMgr\bin\Release\adminMgr.pdb

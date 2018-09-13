@@ -1,0 +1,10 @@
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Debug\adminMgr.exe.config
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Debug\adminMgr.exe
+F:\myproject\vs2013\adminMgr\adminMgr\bin\Debug\adminMgr.pdb
+F:\myproject\vs2013\adminMgr\adminMgr\obj\Debug\adminMgr.exe
+F:\myproject\vs2013\adminMgr\adminMgr\obj\Debug\adminMgr.pdb
+F:\IMS\IMS\adminMgr\adminMgr\bin\Debug\adminMgr.exe.config
+F:\IMS\IMS\adminMgr\adminMgr\obj\Debug\adminMgr.exe
+F:\IMS\IMS\adminMgr\adminMgr\obj\Debug\adminMgr.pdb
+F:\IMS\IMS\adminMgr\adminMgr\bin\Debug\adminMgr.exe
+F:\IMS\IMS\adminMgr\adminMgr\bin\Debug\adminMgr.pdb
