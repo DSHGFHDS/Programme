@@ -1,0 +1,149 @@
+    private void GenerateClockFilledSprite(VertexHelper vh, Vector4 vertices, Vector4 uvs, float fillAmount)
+    {
+        float uvLeft = uvs.x;
+        float uvBottom = uvs.y;
+        float uvRight = uvs.z;
+        float uvTop = uvs.w;
+
+        Vector3[] endVers = new Vector3[4];
+        Vector3[] endUVs = new Vector3[4];
+
+        for (int i = 0; i < 4; i++)
+        {
+            float fx0, fx1, fy0, fy1;
+
+            if (i < 2)
+            {
+                fx0 = 0f;
+                fx1 = 0.5f;
+            }
+            else
+            {
+                fx0 = 0.5f;
+                fx1 = 1f;
+            }
+
+            if (i == 0 || i == 3)
+            {
+                fy0 = 0f;
+                fy1 = 0.5f;
+            }
+            else
+            {
+                fy0 = 0.5f;
+                fy1 = 1f;
+            }
+
+            endVers[0].x = Mathf.Lerp(vertices.x, vertices.z, fx0);
+            endVers[1].x = endVers[0].x;
+            endVers[2].x = Mathf.Lerp(vertices.x, vertices.z, fx1);
+            endVers[3].x = endVers[2].x;
+
+            endVers[0].y = Mathf.Lerp(vertices.y, vertices.w, fy0);
+            endVers[1].y = Mathf.Lerp(vertices.y, vertices.w, fy1);
+            endVers[2].y = endVers[1].y;
+            endVers[3].y = endVers[0].y;
+
+            endUVs[0].x = Mathf.Lerp(uvLeft, uvRight, fx0);
+            endUVs[1].x = endUVs[0].x;
+            endUVs[2].x = Mathf.Lerp(uvLeft, uvRight, fx1);
+            endUVs[3].x = endUVs[2].x;
+
+            endUVs[0].y = Mathf.Lerp(uvBottom, uvTop, fy0);
+            endUVs[1].y = Mathf.Lerp(uvBottom, uvTop, fy1);
+            endUVs[2].y = endUVs[1].y;
+            endUVs[3].y = endUVs[0].y;
+
+            bool clockwise = mFillMode == FillMode.Clockwise;
+            float val = clockwise ? fillAmount * 4f - ((i) % 4) : fillAmount * 4f - (3 - ((i) % 4));
+
+            int corner = (i + 2) % 4;
+            if ((corner & 1) == 1)
+                clockwise = !clockwise;
+
+            float angle = Mathf.Clamp01(val);
+            if (clockwise) angle = 1f - angle;
+            angle *= 90f * Mathf.Deg2Rad;
+            float cos = Mathf.Cos(angle);
+            float sin = Mathf.Sin(angle);
+
+            RadialCut(endVers, cos, sin, clockwise, corner);
+            RadialCut(endUVs, cos, sin, clockwise, corner);
+            AddQuad(vh, endVers, mLinearColor, endUVs);
+        }
+    }
+
+    private void RadialCut(Vector3[] xy, float cos, float sin, bool invert, int corner)
+    {
+        int i0 = corner;
+        int i1 = ((corner + 1) % 4);
+        int i2 = ((corner + 2) % 4);
+        int i3 = ((corner + 3) % 4);
+
+        if ((corner & 1) == 1)
+        {
+            if (sin > cos)
+            {
+                cos /= sin;
+                sin = 1f;
+
+                if (invert)
+                {
+                    xy[i1].x = Mathf.Lerp(xy[i0].x, xy[i2].x, cos);
+                    xy[i2].x = xy[i1].x;
+                }
+            }
+            else if (cos > sin)
+            {
+                sin /= cos;
+                cos = 1f;
+
+                if (!invert)
+                {
+                    xy[i2].y = Mathf.Lerp(xy[i0].y, xy[i2].y, sin);
+                    xy[i3].y = xy[i2].y;
+                }
+            }
+            else
+            {
+                cos = 1f;
+                sin = 1f;
+            }
+
+            if (!invert) xy[i3].x = Mathf.Lerp(xy[i0].x, xy[i2].x, cos);
+            else xy[i1].y = Mathf.Lerp(xy[i0].y, xy[i2].y, sin);
+        }
+        else
+        {
+            if (cos > sin)
+            {
+                sin /= cos;
+                cos = 1f;
+
+                if (!invert)
+                {
+                    xy[i1].y = Mathf.Lerp(xy[i0].y, xy[i2].y, sin);
+                    xy[i2].y = xy[i1].y;
+                }
+            }
+            else if (sin > cos)
+            {
+                cos /= sin;
+                sin = 1f;
+
+                if (invert)
+                {
+                    xy[i2].x = Mathf.Lerp(xy[i0].x, xy[i2].x, cos);
+                    xy[i3].x = xy[i2].x;
+                }
+            }
+            else
+            {
+                cos = 1f;
+                sin = 1f;
+            }
+
+            if (invert) xy[i3].y = Mathf.Lerp(xy[i0].y, xy[i2].y, sin);
+            else xy[i1].x = Mathf.Lerp(xy[i0].x, xy[i2].x, cos);
+        }
+    }
